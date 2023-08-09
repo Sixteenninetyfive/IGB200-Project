@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float rotationSpeed;
 
     void Update()
     {
         if (Input.GetKey("a"))
         {
-            transform.position += new Vector3(-Time.deltaTime, 0, 0);
+            transform.Rotate(0, - rotationSpeed * Time.deltaTime, 0, Space.Self);
         }
         else if (Input.GetKey("d"))
         {
-            transform.position += new Vector3(Time.deltaTime, 0, 0);
+            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);
         }
     }
 }
