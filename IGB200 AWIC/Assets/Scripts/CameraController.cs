@@ -6,15 +6,31 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
 
+    private int rotationDirection = 0;
+
     void Update()
     {
-        if (Input.GetKey("a"))
+        if (Input.GetKeyDown("a"))
         {
-            transform.Rotate(0, - rotationSpeed * Time.deltaTime, 0, Space.Self);
+            rotationDirection = -1;
         }
         else if (Input.GetKey("d"))
         {
-            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);
+            rotationDirection = 1;
+        }
+
+        if (transform.rotation.y < -0.5f)
+        {
+            rotationDirection = 0;
+        }
+
+        if (rotationDirection == -1)
+        {
+            transform.Rotate(rotationSpeed * Time.deltaTime, 0, 0, Space.Self);
+        }
+        else if (rotationDirection == 1)
+        {
+            transform.Rotate(-rotationSpeed * Time.deltaTime, 0, 0, Space.Self);
         }
     }
 }
