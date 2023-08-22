@@ -12,9 +12,19 @@ public class MutilpleCharactersContoller : MonoBehaviour
     {
         if (Input.GetKeyDown("c"))
         {
-            characters[currentCharacter].WalkToDoor();
-            if (currentCharacter < characters.Length)
-                currentCharacter += 1;
+            if (currentCharacter >= -1 && characters.Length > currentCharacter)
+            {
+                characters[currentCharacter].WalkToDoor();
+            }
+            if (currentCharacter > 0 && characters.Length > currentCharacter - 1)
+            {
+                characters[currentCharacter - 1].WalkToCounter();
+            }
+            if (currentCharacter > 1 && characters.Length > currentCharacter - 2)
+            {
+                characters[currentCharacter - 2].WalkOut();
+            }
+            currentCharacter += 1;
         }
     }
 }
